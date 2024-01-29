@@ -1,0 +1,730 @@
+{
+  "auth_owner": {
+    "first_name_missing": "First name is a required field",
+    "first_name_max_length": "Ensure first name has at most 50 characters",
+    "first_name_min_length": "Ensure first name has at least 1 characters",
+    "middle_name_max_length": "Ensure middle name has at most 50 characters",
+    "middle_name_min_length": "Ensure middle name has at least 1 characters",
+    "email_missing": "Email is a required field",
+    "email_max_length": "Ensure email has at most 60 characters",
+    "email_min_length": "Ensure email has at least 5 characters",
+    "last_name_missing": "Last name is a required field",
+    "last_name_max_length": "Ensure last name has at most 50 characters",
+    "last_name_min_length": "Ensure last name has at least 1 characters",
+    "password_missing": "Password is a required field",
+    "password_max_length": "Ensure password has at most 100 characters",
+    "password_min_length": "Ensure password has at least 8 characters",
+    "password_regex": "Please pass valid password",
+    "date_of_birth_missing": "Date of birth is a required field",
+    "date_of_birth_value_error": "Please pass valid date format for date of birth('%m/%d/%Y')",
+    "date_of_birth_type_error": "Date of birth is not a valid date value",
+    "address_missing": "Address is a required field",
+    "address_max_length": "Ensure address has at most 100 characters",
+    "postal_code_missing": "Postal code is a required field",
+    "postal_code_max_length": "Ensure postal code has at most 50 characters",
+    "position_missing": "Position is a required field",
+    "email_not_valid": "The email entered is already in use",
+    "mobile_not_valid": "The mobile number entered is already in use",
+    "not_exists": "Owner does not exists",
+    "no_master_id": "Please provide a master id"
+  },
+  "auth_password": {
+    "password_missing": "Password is a required field",
+    "password_max_length": "Ensure password has at most 100 characters",
+    "password_min_length": "Ensure password has at least 8 characters",
+    "password_regex": "Please pass valid password",
+    "oldPassword_missing": "Old Password is a required field",
+    "newPassword_missing": "New Password is a required field",
+    "newPassword_max_length": "Ensure new password has at most 100 characters",
+    "newPassword_min_length": "Ensure new password has at least 8 characters",
+    "newPassword_regex": "Please pass valid password"
+  },
+  "auth_reset_password_token": {
+    "accountType_missing": "Account type is a required field",
+    "email_missing": "Email is a required field",
+    "email_max_length": "Ensure email has at most 60 characters",
+    "email_min_length": "Ensure email has at least 5 characters"
+  },
+  "auth_reset_password": {
+    "password_missing": "Password is a required field",
+    "password_max_length": "Ensure password has at most 100 characters",
+    "password_min_length": "Ensure password has at least 8 characters",
+    "password_regex": "Please pass valid password",
+    "token_missing": "Token is a required field"
+  },
+  "auth_verify_otp": {
+    "otp_missing": "OTP is a required field",
+    "mobile_missing": "Mobile is a required field"
+  },
+  "auth_verify_email": {
+    "token_missing": "Token is a required field"
+  },
+  "clinic_create": {
+    "clinic_name_missing": "Clinic name is a required field",
+    "clinic_name_max_length": "Ensure clinic name has at most 100 characters",
+    "contact_email_missing": "Contact email is a required field",
+    "contact_email_max_length": "Ensure contact email has at most 100 characters",
+    "main_representative_max_length": "Ensure main representative has at most 100 characters",
+    "address_max_length": "Ensure address has at most 255 characters",
+    "address_missing": "Address is a required field",
+    "clinic_website_max_length": "Ensure clinic address has at most 200 characters",
+    "tax_number_max_length": "Ensure tax number has at most 200 characters",
+    "mobile_max_length": "Ensure mobile has at most 14 characters",
+    "masterid_max_length": "Ensure masterid has at most 100 characters",
+    "pms_integration_missing": "Pms integration is a required field",
+    "pms_integration_bool": "Pms integration is not a valid boolean value",
+    "longitude_missing": "Longitude is a required field",
+    "longitude_float": "Longitude is not a valid float value",
+    "latitude_missing": "Latitude is a required field",
+    "latitude_float": "Latitude is not a valid float value",
+    "contact_email_regex": "Please enter valid contact email",
+    "subscription_plan_id_missing": "Subscription plan id is a required field",
+    "not_valid_clinic_name": "This name is already register for clinic"
+  },
+  "clinic_update": {
+    "clinic_id_missing": "Clinic id is a required field",
+    "clinic_name_missing": "Clinic name is a required field",
+    "clinic_name_max_length": "Ensure clinic name has at most 100 characters",
+    "contact_email_missing": "Contact email is a required field",
+    "contact_email_max_length": "Ensure contact email has at most 100 characters",
+    "main_representative_max_length": "Ensure main representative has at most 100 characters",
+    "address_max_length": "Ensure address has at most 100 characters",
+    "address_missing": "Address is a required field",
+    "clinic_website_max_length": "Ensure clinic address has at most 200 characters",
+    "tax_number_max_length": "Ensure tax number has at most 200 characters",
+    "mobile_max_length": "Ensure mobile has at most 14 characters",
+    "masterid_max_length": "Ensure masterid has at most 100 characters",
+    "not_valid_clinic_name": "This name is already register for clinic",
+    "contact_email_regex": "Please enter valid contact email"
+  },
+  "clinic_staff": {
+    "clinic_id_missing": "Clinic id is a required field",
+    "clinic_id_str": "Clinic id is not a valid string",
+    "staff_id_missing": "Staff id is a required field",
+    "staff_id_str": "Staff id is not a valid string",
+    "position_missing": "Position is a required field",
+    "position_list": "Position is not valid list",
+    "assign_modules_str": "Assign modules is not a valid string",
+    "is_owner_missing": "Is owner is a required parameter"
+  },
+  "clinic_get": {
+    "not_valid_clinic": "This clinic does not exists",
+    "not_valid_staff": "This staff does not exists",
+    "not_valid_staff_clinic_connection": "Staff clinic connection already exists",
+    "no_clinic_found": "Clinic not exists",
+    "not_valid_clinic_for_staff": "Not valid clinic for this staff"
+  },
+  "auth_login": {
+    "scope_greater": "Please select single scope",
+    "scope_lesser": "Please select a scope",
+    "invalid_scope": "Invalid scope selected",
+    "staff_scope": "This position is not allowed to login on owner portal",
+    "invalid_credential": "Invalid login credentials",
+    "email_not_verified": "Please verify your email",
+    "forbidden_access": "Forbidden access",
+    "username_missing": "Please enter the username",
+    "password_missing": "Please enter the password",
+    "is_owner_missing": "Please pass the is_owner field",
+    "no_social_account": "No user found with this email"
+  },
+  "internal_server": {
+    "internal": "Internal server error"
+  },
+  "common_error": {
+    "valid_old_password": "You must provide a valid old password",
+    "valid_account_type": "Account type can be either patient or staff or owner",
+    "not_valid_email": "Email does not exists",
+    "link_expire": "Link expired. Please try again.",
+    "mobile_not_valid": "Pass a valid mobile number",
+    "not_valid_owner": "Account type should be owner",
+    "email_limit_exceeded": "Your email verification limit exceed for today",
+    "api_restrict": "You are not allowed user",
+    "pms_data": "This data added from the PMS so You are not allowed to change the details",
+    "email_not_valid": "The email entered is already in use",
+    "non_pms_clinic": "Please select non pms clinic",
+    "not_office_id": "Please provide office id",
+    "not_practice_id": "Please provide practice id",
+    "match_password": "Old password and new password can not be same",
+    "from_to_date ": "Please pass both from and to date",
+    "invalid_sort_key": "Invalid sort by key",
+    "extension_error": "Image type should be JPEG or JPG or PNG",
+    "file_size_error": "File size is too large",
+    "not_valid_appointment": "This appointment does not exist",
+    "not_valid_exam": "This exam does not exists",
+    "not_complete_pre_intake": "Pre intake form is not completed",
+    "not_valid_appt_type": "Please pass valid appointment type",
+    "arrived_sub_status": "Please pass valid sub status for arrived status",
+    "ongoing_sub_status": "Please pass valid sub status for ongoing status",
+    "finished_sub_status": "Please pass valid sub status for finished status",
+    "completed_sub_status": "Please pass valid sub status for completed status",
+    "exam_not_exists": "Exam does not exists for this appointment",
+    "appointment_not_exists": "This appointment does not exist",
+    "risk_profile_not_exists": "Risk profile does not exists",
+    "not_allowed_appointment": "You are not the allowed user for updating this appointment",
+    "not_allowed_show_appointment": "You are not allowed user for getting appointment details",
+    "not_allowed_show_pre-intake": "You are not allowed user for getting pre intake details",
+    "not_valid_patient": "Patient does not exists",
+    "pms_perio_chart_sync": "Sync Failed. No available perio chart records in PMS.",
+    "pms_odonto_chart_sync": "Sync Failed. No available odonto chart records in PMS.",
+    "not_valid_clinic": "This clinic does not exists",
+    "sikka_error": "Error generated from PMS side",
+    "not_valid_appointment_pms": "Please pass valid appointment from the PMS",
+    "not_allowed_show_image": "You are not allowed user for getting image details",
+    "staff_attached_appointment_delete": "This staff have upcoming or ongoing or arrived appointment so you can not delete staff",
+    "staff_attached_appointment_status": "This staff have upcoming or ongoing or arrived appointment so you can not update status of staff",
+    "invalid_scope": "You are not allowed to get user details, invalid Scope Selected"
+  },
+  "OTP_error": {
+    "limit_exceeded": "Your otp limit is exceeded for today",
+    "time_limit": "Please try again after some time",
+    "not_valid_OTP": "Invalid Otp entered.Please try again"
+  },
+  "staff": {
+    "first_name_missing": "First name is a required field",
+    "clinic_id_missing": "Clinic id is a required field",
+    "position_missing": "Position is a required field",
+    "first_name_max_length": "Ensure first name has at most 50 characters",
+    "first_name_min_length": "Ensure first name has at least 1 characters",
+    "middle_name_max_length": "Ensure middle name has at most 50 characters",
+    "middle_name_min_length": "Ensure middle name has at least 1 characters",
+    "email_missing": "Email is a required field",
+    "email_max_length": "Ensure email has at most 60 characters",
+    "email_min_length": "Ensure email has at least 5 characters",
+    "last_name_missing": "Last name is a required field",
+    "last_name_max_length": "Ensure last name has at most 50 characters",
+    "last_name_min_length": "Ensure last name has at least 1 characters",
+    "mobile_phone_number_missing": "Mobile phone number is a required field",
+    "date_of_birth_value_error": "Time data does not match format '%m/%d/%Y'",
+    "date_of_birth_type_error": "Date of birth is not a valid date value",
+    "not_valid_staff": "Member does not exists",
+    "clinic_value_error": "Please add one clinic",
+    "clinic_type_error": "Please select at least one clinic",
+    "email_regex": "Please enter valid email",
+    "not_valid_dentistID": "Dentist does not exists",
+    "not_valid_hygienistID": "Hygienist does not exists",
+    "not_valid_assistantID": "Assistant does not exists"
+  },
+  "patients": {
+    "first_name_missing": "First name is a required field",
+    "clinic_id_missing": "Clinic id is a required field",
+    "position_missing": "Position is a required field",
+    "first_name_max_length": "Ensure first name has at most 50 characters",
+    "first_name_min_length": "Ensure first name has at least 1 characters",
+    "middle_name_max_length": "Ensure middle name has at most 50 characters",
+    "middle_name_min_length": "Ensure middle name has at least 1 characters",
+    "email_missing": "Email is a required field",
+    "email_max_length": "Ensure email has at most 60 characters",
+    "email_min_length": "Ensure email has at least 5 characters",
+    "last_name_missing": "Last name is a required field",
+    "last_name_max_length": "Ensure last name has at most 50 characters",
+    "last_name_min_length": "Ensure last name has at least 1 characters",
+    "mobile_phone_number_missing": "Mobile phone number is a required field",
+    "date_of_birth_value_error": "Time data does not match format '%m/%d/%Y'",
+    "date_of_birth_type_error": "Date of birth is not a valid date value",
+    "not_valid_patient": "Patient does not exists",
+    "clinic_missing": "Clinic is a required field",
+    "clinic_value_error": "Please add one clinic",
+    "clinic_type_error": "Please select at least one clinic",
+    "email_regex": "Please enter valid email",
+    "contact_info_not_available": "Patient contact info does not exists",
+    "patient_attached_appointment_delete": "This patient have upcoming or ongoing or arrived appointment so you can not delete patient",
+    "patient_attached_appointment_status": "This patient have upcoming or ongoing or arrived appointment so you can not update status of patient"
+  },
+  "appointments_owner": {
+    "pass_member": "Please provide one member for the appointment",
+    "appointmentDate_value_error": "Time data does not match format '%m/%d/%Y'",
+    "appointmentDate_type_error": "Appointment date is not a valid date value",
+    "patientID_missing": "patient is a required field",
+    "clinicID_missing": "clinic is a required field",
+    "appointmentType_missing": "Appointment type is a required field",
+    "appointmentDate_missing": "Appointment date is a required field",
+    "appointmentTime_missing": "Appointment time is a required field",
+    "appointmentTime_time": "Pass valid time format",
+    "not_valid_appointment": "Could not find appointment",
+    "not_allow_appointment_type": "Appointment type can't be changed",
+    "no_appointment_id": "Please provide appointment id or pms appointment id",
+    "not_allowed": "You are not allowed to update the appointment as the appointment is finished"
+  },
+  "appointments_get_details_all": {
+    "status_missing": "Status is required field in query params",
+    "desc_bool": "Please pass valid boolean value for desc key"
+  },
+  "appointments_status": {
+    "status_missing": "Status is required field in query params",
+    "status_str": "Please pass valid string value",
+    "status_value_error": "Status can be Upcoming or Arrived or Ongoing or Completed or Finished or No Show or Cancelled",
+    "sub_status_str": "Please pass valid string value",
+    "sub_status_value_error": "Please pass valid sub status"
+  },
+  "clinic_approve": {
+    "office_id_min_length": "Ensure office id has at least 6 characters",
+    "office_id_max_length": "Ensure office id has at most 6 characters",
+    "office_id_regex": "Please pass valid office id"
+  },
+  "pre-intake_form": {
+    "date_of_birth_value_error": "Please pass valid date format for date of birth('%m/%d/%Y')",
+    "date_of_birth_type_error": "Date of birth is not a valid date value",
+    "last_see_dental_hygienist_value_error": "Please pass valid date format for last_see_dental_hygienist('%m/%d/%Y')",
+    "last_see_dental_hygienist_type_error": "Last see dental hygienist is not a valid date value",
+    "date_of_last_dental_x_ray_value_error": "Please pass valid date format for date_of_last_dental_x_ray('%m/%d/%Y')",
+    "date_of_last_dental_x_ray_type_error": "Date of last dental x-ray is not a valid date value",
+    "last_visit_to_physician_value_error": "Please pass valid date format for last_visit_to_physician('%m/%d/%Y')",
+    "last_visit_to_physician_type_error": "Last visit to physician is not a valid date value",
+    "pre_intake_does_not_exists": "Pre-intake does not exists for this patient ID",
+    "staff_patient_id": "Please pass the patient id",
+    "describe_yourself_1_value_error": "Invalid answer for describe yourself 1 , Options are: 'Fast-paced and outspoken' or 'Cautious and reflective'",
+    "describe_yourself_2_value_error": "Invalid answer for describe yourself 2 , Options are: 'Questioning and skeptical' or 'Accepting and warm'",
+    "not_exist_version": "Pre intake does not exists with this version",
+    "insurance_list": "Please pass at least one insurance details",
+    "submit_form_missing": "submit_form is a required field",
+    "submit_form_bool": "Please pass valid boolean value",
+    "update_form_missing": "update_form is a required field "
+  },
+  "admin_profile": {
+    "not_valid_admin_id": "Please pass valid admin id"
+  },
+  "admin_subscription_plan": {
+    "not_valid_plan_for_pms_clinic": "Selected plan is not allowed for pms clinic",
+    "not_valid_plan_for_non_pms_clinic": "Selected plan is not allowed for non pms clinic",
+    "not_valid_plan_id": "This subscription plan does not exists",
+    "title_missing": "Title is required field"
+  },
+  "clinic_subscription_add": {
+    "clinic_id_missing": "Clinic id is a required field",
+    "subscription_plan_id": "Subscription plan id is a required field",
+    "payment_method_id": "Payment method id is a required field"
+  },
+  "clinic_subscription": {
+    "body_missing": "Please provide the payload",
+    "cancel_at_period_end_missing": "Cancel at period end is a required field",
+    "cancel_at_period_end_bool": "Cancel at period end is not a valid boolean value",
+    "subscribed_owner": "This plan is already subscribed by owner",
+    "unsubscribed_owner": "This plan is already unsubscribed by owner",
+    "not_activate_plan": "You can not subscribe or unsubscribe this plan"
+  },
+  "clinic_payment_method_update": {
+    "body_missing": "Please provide the payload",
+    "old_payment_method_id_missing": "Old payment method id is a required field",
+    "new_payment_method_id_missing": "New payment method id is a required field",
+    "old_payment_method_id_str": "Old payment method id is not a valid string",
+    "new_payment_method_id_str": "New payment method id is not a valid string"
+  },
+  "clinic_owner_payment_method": {
+    "payment_method_id_missing": "Payment method id is a required field",
+    "stripe_customer_id_missing": "Stripe customer id is a required field",
+    "method_missing": "Please pass method",
+    "payment_method_id_str": "Payment method id is not a valid string",
+    "stripe_customer_id_str": "Stripe customer id is not a valid string",
+    "stripe_customer_str": "Method is not a valid string",
+    "stripe_customer_id_not_allowed": "Null is not an allowed value for stripe customer id",
+    "payment_method_id_not_allowed": "Null is not an allowed value for payment method id",
+    "method_not_allowed": "Null is not an allowed value for method"
+  },
+  "admin_cms": {
+    "not_cms": "CMS details does not exists"
+  },
+  "admin_contact": {
+    "not_contact": "Contact details does not exists"
+  },
+  "analytics": {
+    "not_valid_position": "Please pass valid position from this (Assistant, Dentist, Hygienist)",
+    "not_valid_time_period": "Please pass valid time period from this (week, yearly, monthly, quarterly)",
+    "staff_id_error": "Member filter only allowed for owner"
+  },
+  "dashboard_staff": {
+    "clinic_id_missing": "Clinic id is a required parameter"
+  },
+  "dashboard_appointments_staff": {
+    "time_period_missing": "Time period is a required parameter",
+    "clinic_id_missing": "Clinic is a required field"
+  },
+  "dashboard_appointments_count_staff": {
+    "time_period_missing": "Time period is a required parameter",
+    "clinic_id_missing": "Clinic is a required field"
+  },
+  "auth_send_otp": {
+    "mobile_missing": "Mobile is a required field"
+  },
+  "appointments_all_staff": {
+    "clinic_id_missing": "Clinic id is a required field",
+    "not_valid_role": "Please pass valid role from this (Assistant, Dentist, Hygienist)"
+  },
+  "images_upload": {
+    "appointment_id_missing": "Appointment id is a required field",
+    "type_missing": "Type id is a required field",
+    "file_missing": "File is a required field",
+    "image_name_missing": "Image name is a required field",
+    "invalid_type": "Please pass valid image type",
+    "not_valid_appointment": "This appointment does not exist",
+    "image_exists": "Image with this name already exists",
+    "xray_exists": "Xray with this name already exists",
+    "no_image": "Image not found",
+    "no_xray": "Xray not found",
+    "image_not_exist": "Image does not exists with provided id"
+  },
+  "images_recent": {
+    "image_type_missing": "Please pass image type"
+  },
+  "images_appointment": {
+    "image_type_missing": "Please pass image type"
+  },
+  "images_delete": {
+    "image_id_missing": "Image id is a required field"
+  },
+  "images_tags": {
+    "not_exists_tag": "Tag does not exists with provided tag id"
+  },
+  "images_xray_delete": {
+    "xray_id_missing": "X-ray id is a required field"
+  },
+  "preIntakeForm_discProfile": {
+    "patient_id_missing": "Patient id is a required field"
+  },
+  "exam_preclinical": {
+    "not_exist_preClinical": "Pre clinical does not exists for this appointment",
+    "appointment_id_missing": "Appointment id is a required field",
+    "appointment_id_str": "Please pass a valid appointment id",
+    "exam_consent_bool": "Please pass a valid boolean value for exam consent",
+    "exam_date_value_error": "Please pass valid date format for exam date('%m/%d/%Y')",
+    "inst_steri_cycle_integer": "Please enter only numbers for instrument sterilization cycle",
+    "recall_cycle_period_str": "Please pass valid string value",
+    "appt_type_type_error": "Please pass valid string value",
+    "appt_type_value_error": "Please pass valid appointment type",
+    "not_allowed_NPE": "Recall cycle period and last date of examination fields are not allowed to fill when appointment type is NPE ",
+    "last_date_of_examination_value_error": "Please pass valid date for last date of examination",
+    "inst_steri_cycle_value_error": "Length of instrument sterilization cycle is too large"
+  },
+  "exam_dentist_create": {
+    "tmj_click_start_date_value_error": "Please pass valid date format for tmj_click_start_date('%m/%d/%Y')"
+  },
+  "exam_dentist_key_findings": {
+    "appt_type_missing": "Appointment type is a required params"
+  },
+  "assistant_clinical_exam": {
+    "no_exam_available": "No exam available for this appointment"
+  },
+  "treatment": {
+    "not_valid_treatment": "Could not find treatment",
+    "not_valid_recommendation": "Could not find recommendation",
+    "not_valid_hygiene_cycle": "Hygiene cycle can be 3 or 4 or 6 or 9 or 12 months",
+    "not_valid_exam_cycle": "Exam cycle can be 3 or 4 or 6 or 12 months",
+    "not_valid_xray_cycle": "X-ray cycle can be 6 or 12 or 18 or 24 or 36 months"
+  },
+  "exam_hard_tissue": {
+    "appointment_id_missing": "Please pass appointment id",
+    "tooth_number_str": "Please pass valid string for tooth number",
+    "skeletal_class_subtype_str": "Please pass valid string for skeletal_class_subtype",
+    "click_subtype_str": "Please pass valid string for click_subtype",
+    "click_notes_str": "Please pass valid string for click_notes",
+    "crepitus_subtype_str": "Please pass valid string for crepitus_subtype",
+    "crepitus_notes_str": "Please pass valid string for crepitus_notes",
+    "ant_wear_grade_str": "Please pass valid string for ant_wear_grade",
+    "post_wear_grade_str": "Please pass valid string for post_wear_grade",
+    "appearance_tooth_number_str": "Please pass valid string for appearance_tooth_number",
+    "appearance_tooth_surface_str": "Please pass valid string for appearance_tooth_surface",
+    "appearance_subtype_str": "Please pass valid string for appearance_subtype",
+    "appearance_notes_str": "Please pass valid string for appearance_notes",
+    "shape_tooth_number_str": "Please pass valid string for shape_tooth_number",
+    "shape_tooth_surface_str": "Please pass valid string for shape_tooth_surface",
+    "shape_subtype_str": "Please pass valid string for shape_subtype",
+    "shape_notes_str": "Please pass valid string for shape_notes",
+    "sharpness_tooth_number_str": "Please pass valid string for sharpness_tooth_number",
+    "sharpness_tooth_surface_str": "Please pass valid string for sharpness_tooth_surface",
+    "sharpness_subtype_str": "Please pass valid string for sharpness_subtype",
+    "sharpness_notes_str": "Please pass valid string for sharpness_notes",
+    "general_pattern_subtype_str": "Please pass valid string for general_pattern_subtype",
+    "general_pattern_notes_str": "Please pass valid string for general_pattern_notes",
+    "grade_str": "Please pass valid string for grade",
+    "subtype_str": "Please pass valid string for subtype",
+    "notes_str": "Please pass valid string for notes",
+    "tooth_site_str": "Please pass valid string for tooth_site",
+    "erosion_bool": "Please pass valid boolean for erosion",
+    "attrition_bool": "Please pass valid boolean for attrition",
+    "is_dentin_exposed_bool": "Please pass valid boolean for is_dentin_exposed",
+    "mm_float": "Please pass valid float for mm",
+    "present_bool": "Please pass valid boolean for present",
+    "mandibular_present_bool": "Please pass valid boolean for mandibular_present",
+    "maxillary_present_bool": "Please pass valid boolean for maxillary_present",
+    "mandibular_notes_str": "Please pass valid string for mandibular_notes",
+    "maxillary_notes_str": "Please pass valid string for maxillary_notes",
+    "angle_class_right_cuspid_subtype_str": "Please pass valid string for angle_class_right_cuspid_subtype",
+    "angle_class_left_cuspid_subtype_str": "Please pass valid string for angle_class_left_cuspid_subtype",
+    "angle_class_right_molar_subtype_str": "Please pass valid string for angle_class_right_molar_subtype",
+    "angle_class_left_molar_subtype_str": "Please pass valid string for angle_class_left_molar_subtype",
+    "crowding_max_grade_str": "Please pass valid string for crowding_max_grade",
+    "crowding_mand_grade_str": "Please pass valid string for crowding_mand_grade",
+    "spacing_max_grade_str": "Please pass valid string for spacing_max_grade",
+    "spacing_mand_grade_str": "Please pass valid string for spacing_mand_grade",
+    "presence_of_white_decalcification_spot_bool": "Please pass valid boolean for presence_of_white_decalcification_spot",
+    "tooth_number_value_error": "Please pass valid tooth_number",
+    "angle_class_right_cuspid_subtype_value_error": "Please pass valid subtype for Angle Classification Right Cuspid ('Class I Normal', 'Class I Malocclusion', 'Class II Div 1', 'Class II Div 2', 'Class III', 'Class III Tendency')",
+    "angle_class_left_cuspid_subtype_value_error": "Please pass valid subtype for Angle Classification Left Cuspid ('Class I Normal', 'Class I Malocclusion', 'Class II Div 1', 'Class II Div 2', 'Class III', 'Class III Tendency')",
+    "angle_class_right_molar_subtype_value_error": "Please pass valid subtype for Angle Classification Right Molar ('Class I Normal', 'Class I Malocclusion', 'Class II Div 1', 'Class II Div 2', 'Class III', 'Class III Tendency')",
+    "angle_class_left_molar_subtype_value_error": "Please pass valid subtype for Angle Classification Left Molar ('Class I Normal', 'Class I Malocclusion', 'Class II Div 1', 'Class II Div 2', 'Class III', 'Class III Tendency')",
+    "excur_lateral_right_subtype_value_error": "Please pass valid subtype for Lateral Excursion Right('Cuspid Rise', 'Group Function', 'with Crossover')",
+    "excur_lateral_left_subtype_value_error": "Please pass valid subtype for Lateral Excursion Left('Cuspid Rise', 'Group Function', 'with Crossover')",
+    "max_midline_to_face_midline_subtype_value_error": "Please pass valid subtype for Max Midline ('Coincident', 'Shifted to Left', 'Shifted to Right')",
+    "mand_midline_to_max_midline_subtype_value_error": "Please pass valid subtype for Mand Midline ('Coincident', 'Shifted to Left', 'Shifted to Right')",
+    "overjet_subtype_value_error": "Please pass valid subtype for Overjet Tooth ('Positive', 'Negative')",
+    "protru_guide_subtype_value_error": "Please pass valid subtype for Protrusive Guide ('Centrals', 'Canine to Canine', 'Posterior')",
+    "protru_guide_tooth_number_value_error": "Please pass valid protru guide tooth number",
+    "crowding_max_grade_value_error": "Please pass valid grade for Crowding Maxillary ('None', 'Mild(< 5mm)', 'Moderate (>= 5mm, < 10 mm)', 'Severe (>= 10 mm)')",
+    "crowding_mand_grade_value_error": "Please pass valid grade for Crowding Mandibular ('None', 'Mild(< 5mm)', 'Moderate (>= 5mm, < 10 mm)', 'Severe (>= 10 mm)')",
+    "spacing_max_grade_value_error": "Please pass valid grade for Spacing Maxillary ('None', 'Mild(< 5mm)', 'Moderate (>= 5mm, < 10 mm)', 'Severe (>= 10 mm)')",
+    "spacing_mand_grade_value_error": "Please pass valid grade for Spacing Mandibular ('None', 'Mild(< 5mm)', 'Moderate (>= 5mm, < 10 mm)', 'Severe (>= 10 mm)')",
+    "hx_ortho_tx_value_error": "Please pass valid value for history of ortho tx ('No Treatment', 'Yes, orthodontic treatment')",
+    "skeletal_class_subtype_value_error": "Please pass valid subtype for Skeletal Class ('I', 'II', 'III')",
+    "fremitus_tooth_number_value_error": "Please pass valid fremitus tooth number",
+    "ant_wear_grade_value_error": "Please pass valid grade for ant wear ('None', 'Mild(< 1mm)', 'Moderate (>= 1mm, < 2 mm)', 'Severe (>= 2 mm)')",
+    "post_wear_grade_value_error": "Please pass valid grade for post wear ('None', 'Mild(< 1mm)', 'Moderate (>= 1mm, < 2 mm)', 'Severe (>= 2 mm)')",
+    "general_pattern_subtype_value_error": "Please pass valid subtype for general wear pattern ('End-to-end', 'Pathway', 'Crossover', 'Posterior Molar ('Cupped-Out'))"
+  },
+  "exam_periogram": {
+    "appointment_id_missing": "Please pass appointment id",
+    "tooth_number_str": "Please pass valid string for tooth number",
+    "gingivitis_class_str": "Please pass valid string for gingivitis_class",
+    "periodontitis_class_str": "Please pass valid string for periodontitis_class",
+    "grade_str": "Please pass valid string for grade",
+    "subtype_str": "Please pass valid string for subtype",
+    "notes_str": "Please pass valid string for notes",
+    "tooth_site_str": "Please pass valid string for tooth_site",
+    "mm_float": "Please pass valid float for mm",
+    "present_bool": "Please pass valid boolean for present",
+    "erosion_bool": "Please pass valid boolean for erosion",
+    "attrition_bool": "Please pass valid boolean for attrition",
+    "is_dentin_exposed_bool": "Please pass valid boolean for is_dentin_exposed",
+    "heavy_plaque_bool": "Please pass valid boolean for heavy_plaque",
+    "presence_of_white_decalcification_spot_bool": "Please pass valid boolean for presence_of_white_decalcification_spot",
+    "tooth_number_value_error": "Please pass valid tooth_number",
+    "grade_value_error": "Please pass valid grade",
+    "tooth_site_value_error": "Please pass valid tooth site",
+    "gingivitis_class_value_error": "Please pass valid grade for gingivitis class",
+    "periodontitis_class_value_error": "Please pass valid grade for periodontitis class"
+  },
+  "risk_profile_reviewed": {
+    "body_missing": "Please pass the payload",
+    "appointment_id_missing": "Appointment id is a required field",
+    "appointment_id_str": "Please pass valid string for appointment id",
+    "patient_id_missing": "Patient id is a required field",
+    "patient_id_str": "Please pass valid string for patient id",
+    "notes_str": "Please pass valid string for notes",
+    "reason_str": "Please pass valid string for reason",
+    "version_integer": "Please pass valid integer for version",
+    "version_missing": "Version is a required field",
+    "score_value_error": "Please pass the score between 0 to 5",
+    "score_type_error": "Please pass score as numeric value",
+    "status_value_error": "Please select status as Modify or Accept"
+  },
+  "patient_review_readiness": {
+    "appointment_id_missing": "Appointment id is a required field",
+    "score_value_error": "Please pass tha score between 0 to 5",
+    "score_type_error": "Please pass a valid value for score",
+    "is_selected_bool": "Is selected is not a valid boolean value"
+  },
+  "risk_profile_images": {
+    "image_type_missing": "Please pass image type"
+  },
+  "risk_categories": {
+    "not_valid_risk_category": "Could not find risk category"
+  },
+  "exam_soft_tissue": {
+    "body_missing": "Please pass valid request body",
+    "appointment_id_missing": "Please pass appointment_id",
+    "mp_class_grade_value_error": "Please pass valid grade for MP Class ('I', 'II', 'III', 'IV')",
+    "tonsil_class_present_bool": "Please pass valid boolean value Tonsil Class Present",
+    "tonsil_class_grade_value_error": "Please pass valid grade for Tonsil Class ('0', '1', '2', '3', '4')",
+    "tongue_scalloping_present_bool": "Please pass valid boolean value for Tongue Scalloping Present",
+    "tongue_ties_present_bool": "Please pass valid boolean value for Tongue Ties Present",
+    "soft_palate_subtype_value_error": "Please pass valid subtype for Soft Palate ('WNL', 'Elongated soft palate')",
+    "uvula_subtype_value_error": "Please pass valid subtype for Uvula ('WNL', 'Elongated uvula')",
+    "soft_tissue_subtype_value_error": "Please pass valid subtype for Soft tissue ('WNL', 'Abnormality')",
+    "cancer_screen_subtype_value_error": "Please pass valid subtype for Cancer Screen ('WNL', 'Referral Given')",
+    "salivary_flow_subtype_value_error": "Please pass valid subtype for Salivary flow ('Normal', 'Reduced Flow')",
+    "thyroid_subtype_value_error": "Please pass valid subtype for Thyroid ('WNL', 'Abnormality')",
+    "click_subtype_value_error": "Please pass valid subtype for TMJ Click ('Neither', 'Left', 'Right', 'Both')",
+    "pain_subtype_value_error": "Please pass valid subtype for TMJ Pain ('Neither', 'Left', 'Right', 'Both')",
+    "crepitus_subtype_value_error": "Please pass valid subtype for TMJ Crepitus ('Neither', 'Left', 'Right', 'Both')",
+    "masseter_subtype_value_error": "Please pass valid subtype for Masseter ('Neither', 'Left', 'Right', 'Both')",
+    "temporalis_subtype_value_error": "Please pass valid subtype for Temporalis ('Neither', 'Left', 'Right', 'Both')",
+    "medial_pterygoid_subtype_value_error": "Please pass valid subtype for Medial Pterygoid ('Neither', 'Left', 'Right', 'Both')",
+    "lateral_pterygoid_subtype_value_error": "Please pass valid subtype for Lateral Pterygoid ('Neither', 'Left', 'Right', 'Both')",
+    "not_allowed_for_NPE": "Periodontal exam should contain only recession for NPE flow",
+    "not_allowed_for_RE": "Muscle exam is not valid for RE",
+    "tooth_number_value_error": "Please pass valid tooth_number"
+  },
+  "exam_odontogram": {
+    "not_allowed_for_NPE": "Periodontal exam should not contain presence of white decalcification spot for NPE flow",
+    "tooth_number_value_error": "Please pass valid tooth_number",
+    "procedure_status_value_error": "Please pass valid procedure status",
+    "missing_tooth_tooth_number_value_error": "Please pass valid tooth number for missing tooth",
+    "subtype_value_error": "Please pass valid subtype",
+    "tooth_surface_value_error": "Please pass valid tooth surface"
+  },
+  "exam_miscellaneous": {
+    "not_allowed_for_NPE": "Occlusion exam should not contain aligner therapy and occlusion/wear/tmd concern for the NPE flow. Periodontal exam should not contain Staging and grading for the NPE flow.",
+    "not_allowed_for_RE": "TMJ, wear, and medical history exam are not valid for RE flow. Periodontal exam should not contain occlusal trauma and periodontal comment in RE flow. Occlusion exam should only contain aligner therapy and occlusion/wear/tmd concern for the RE flow.",
+    "tooth_number_value_error": "Please pass valid tooth_number",
+    "appointment_id_missing": "Please pass appointment id",
+    "asa_classification_value_error": "Please pass valid value for asa classification ('I', 'II', 'III', 'IV')"
+  },
+  "exam_notes": {
+    "notes_not_available": "Could not find risk category"
+  },
+  "treatment_checklist": {
+    "time_integer": "Please pass valid value for time"
+  },
+  "device_token": {
+    "not_valid_token": "Could not find device token"
+  },
+  "notifications": {
+    "notification_not_available": "Could not find notifications"
+  },
+  "sikka": {
+    "request_key_failed": "Request key is not obtained. Please try again later",
+    "clinic_fetching_failed": "Cannot fetch the target clinic. Please make sure Sikka Utility Tool is installed and registered successfully.",
+    "clinic_saving_failed": "Cannot save the target clinic. This is likely to be database issue (No clinic with the requested master id found in the db)"
+  },
+  "resources": {
+    "not_valid_portal": "Portal value must be staff, patient or owner",
+    "not_valid_category": "Category value must be guides, forms or videos",
+    "image_extension_error": "Thumbnail image should be in JPEG, JPG or SVG format",
+    "not_exists": "Resource does not exists"
+  },
+  "appointments_additional_notes": {
+    "appointment_id_missing": "appointment_id is a required field",
+    "additional_notes_missing": "additional_notes is a required field",
+    "appointment_id_str": "appointment_id is not a valid string",
+    "additional_notes_str": "additional_notes is not a valid string"
+  },
+  "patients_details_all": {
+    "clinic_id_missing": "clinic_id is a required field"
+  },
+  "procedure_code": {
+    "not_exists": "Procedure code does not exists",
+    "not_valid_procedure": "Please pass valid procedure code",
+    "not_valid_alter_procedure": "Please pass valid alternative procedure code",
+    "not_valid_hygiene": "Please pass valid procedure for hygiene regime section",
+    "not_valid_alter_hygiene": "Please pass valid procedure for alternative hygiene regime section"
+  },
+  "treatment_procedure-code": {
+    "fees_float": "Please pass valid fees",
+    "clinic_id_missing": "Please pass clinic_id"
+  },
+  "treatment_procedure_codes_clinic": {
+    "tooth_numbering_missing": "Please pass tooth_numbering as a query params"
+  },
+  "treatment_recommendations": {
+    "hygiene_tag_value_error": "Please pass valid hygiene_tag",
+    "alternative_hygiene_tag_value_error": "Please pass valid alternative_hygiene_tag",
+    "inner_position_integer": "Please pass valid integer value for inner position",
+    "treatment_type_value_error": "Please pass valid treatment_type"
+  },
+  "patient_review_treatment": {
+    "body_missing": "Please pass request body",
+    "appointment_id_missing": "Please pass appointment_id"
+  },
+  "admin_procedure_codes": {
+    "country_missing": "Please pass country as an query parameter",
+    "is_additional_missing": "Please pass is_additional as an query parameter",
+    "code_exists": "This provided procedure code is already exists",
+    "code_id_not_exists": "Please provide valid procedure code ID"
+  },
+  "admin_procedure-codes": {
+    "hygiene_tag_value_error": "Please pass valid hygiene regimen tag",
+    "code_type_value_error": "Please pass valid code type",
+    "country_value_error": "Please pass valid country details",
+    "fees_value_error": "Please pass valid fees"
+  },
+  "admin_treatment": {
+    "treatment_id_not_exists": "Please provide valid recommendation mapping ID",
+    "treatment_exists": "This provided recommendation is already exists",
+    "country_value_error": "Please pass valid country details",
+    "hygiene_tag_value_error": "Please pass valid hygiene regimen tag",
+    "tx_title_value_error": "Please pass valid treatment title",
+    "default_code_str": "Please pass valid string for default_code"
+  },
+  "admin_procedure-code": {
+    "body_missing": "Please pass request body",
+    "country_value_error": "Please pass valid value for country(USA or CAN)",
+    "hygiene_tag_value_error": "Please pass valid hygiene regimen tag"
+  },
+  "appointments_staff_replace": {
+    "not_valid_staff": "Please pass valid staff",
+    "clinic_id_missing": "Please pass clinic_id",
+    "staff_id_missing": "Please pass staff_id",
+    "position_missing": "Please pass position",
+    "position_value_error": "Please pass valid position"
+  },
+  "preIntakeForm": {
+    "pre_intake_does_not_exists": "Preintake Does not exists"
+  },
+  "owner": {
+    "first_name_missing": "First name is a required field",
+    "first_name_max_length": "Ensure first name has at most 50 characters",
+    "first_name_min_length": "Ensure first name has at least 1 characters",
+    "email_missing": "Email is a required field",
+    "email_max_length": "Ensure email has at most 60 characters",
+    "email_min_length": "Ensure email has at least 5 characters",
+    "email_regex": "Please enter valid email",
+    "last_name_missing": "Last name is a required field",
+    "last_name_max_length": "Ensure last name has at most 50 characters",
+    "last_name_min_length": "Ensure last name has at least 1 characters",
+    "date_of_birth_value_error": "Please pass valid date format for date of birth('%m/%d/%Y')",
+    "mobile_number_missing": "Mobile number is a required field"
+  },
+  "owner_signup": {
+    "first_name_missing": "First name is a required field",
+    "first_name_max_length": "Ensure first name has at most 50 characters",
+    "first_name_min_length": "Ensure first name has at least 1 characters",
+    "email_missing": "Email is a required field",
+    "email_max_length": "Ensure email has at most 60 characters",
+    "email_min_length": "Ensure email has at least 5 characters",
+    "email_regex": "Please enter valid email",
+    "last_name_missing": "Last name is a required field",
+    "last_name_max_length": "Ensure last name has at most 50 characters",
+    "last_name_min_length": "Ensure last name has at least 1 characters",
+    "password_missing": "Password is a required field",
+    "password_max_length": "Ensure password has at most 100 characters",
+    "password_min_length": "Ensure password has at least 8 characters",
+    "password_regex": "Please pass valid password",
+    "mobile_number_missing": "Mobile number is a required field"
+  },
+  "auth_google_signin":{
+    "code_missing": "Code is a required field"
+  },
+  "admin_upload_csv_procedure-codes": {
+    "file_missing": "File is missing"
+  },
+  "treatment_upload-csv_clinic_procedure-codes": {
+    "file_missing": "File is missing"
+  },
+  "pre-intake_form_anonymous": {
+    "patient_details_missing": "Please pass patient details",
+    "pre_intake_missing": "Please pass pre-intake details",
+    "first_name_missing": "First name is a required field",
+    "first_name_max_length": "Ensure first name has at most 50 characters",
+    "first_name_min_length": "Ensure first name has at least 1 characters",
+    "middle_name_max_length": "Ensure middle name has at most 50 characters",
+    "middle_name_min_length": "Ensure middle name has at least 1 characters",
+    "email_missing": "Email is a required field",
+    "email_max_length": "Ensure email has at most 60 characters",
+    "email_min_length": "Ensure email has at least 5 characters",
+    "email_regex": "Please enter valid email address",
+    "last_name_missing": "Last name is a required field",
+    "last_name_max_length": "Ensure last name has at most 50 characters",
+    "last_name_min_length": "Ensure last name has at least 1 characters",
+    "date_of_birth_value_error": "Please pass valid date format for date of birth('%m/%d/%Y')",
+    "clinic_id_missing": "clinic_id is a required field"
+  },
+  "patients_verify-email": {
+    "body_missing": "Please pass request body",
+    "email_missing": "Email is a required field",
+    "email_max_length": "Ensure email has at most 60 characters",
+    "email_min_length": "Ensure email has at least 5 characters",
+    "email_regex": "Please enter valid email address",
+    "email_not_allowed": "Null is not allowed value for email"
+  },
+  "already_liked": {
+    "already_liked_blog": "You have already liked this blog"
+  }
+}
