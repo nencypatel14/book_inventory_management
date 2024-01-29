@@ -17,3 +17,5 @@ def getVerifyPassword(db: Session, Password: str):
         .filter(Table.UserInformation.password == Password)
         .first()
     )
+
+

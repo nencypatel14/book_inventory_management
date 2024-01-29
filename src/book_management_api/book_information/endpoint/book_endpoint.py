@@ -9,7 +9,6 @@ from src.book_management_api.book_information.pydantic.book_pydantic import Book
 from src.general.response import get_message, error_response, success_response
 from src.book_management_api.book_information.CRUD import book_CRUD as CRUDbook
 
-
 router = APIRouter()
 
 @router.get("/list")

@@ -12,6 +12,10 @@ class Settings(BaseSettings):
     POSTGRES_DB: str
     JWTALGORITHM: str
     JWTSECRETKEY: str
+    GOOGLE_CLIENT_ID: str
+    GOOGLE_CLIENT_SECRET: str
+    GOOGLE_REDIRECT_URI: str
+    GOOGLE_GRANT_TYPE: str
 
     class config:
         env_file = './.env'

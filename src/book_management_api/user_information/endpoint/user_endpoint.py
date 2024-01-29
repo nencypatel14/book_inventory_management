@@ -11,6 +11,7 @@ from src.book_management_api.user_information.CRUD import user_CRUD as CRUDuser
 
 router = APIRouter()
 
+
 @router.post("/signup")
 def create_account(user_info: UserDetails, db: Session = Depends(get_db)):
     """
