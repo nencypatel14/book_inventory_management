@@ -122,7 +122,7 @@ def add_book_rating(book_id: str, rating: RatingEnum, review: str, book_data = D
 @router.post("/search-book")
 def search_book(author_name: str, db: Session = Depends(get_db)):
     """
-    Search book with using author name
+    Search book with using author name 
     """
     try:
         first_name, last_name = author_name.split()
