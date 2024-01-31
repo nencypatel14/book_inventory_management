@@ -1,5 +1,6 @@
 import logging
 import os
+from urllib.parse import unquote
 import bcrypt
 from jose import jwt
 import requests
@@ -75,71 +76,62 @@ def login(db: Session = Depends(get_db), user: OAuth2PasswordRequestForm = Depen
         return error_response(get_message("internal_server", "internal"), 500)
 
 
-# @router.post("/google/signin")
-# async def social_login(input_data: pydanticSchemas.GoogleSocialLoginRequest, db: Session = Depends(get_db)):
-#     try:
-#         headers = {
-#                 "Content-Type":"application/x-www-form-urlencoded"
-#             }
-#         # Authorize the request with google
-#         response = requests.post(
-#             "https://accounts.google.com/o/oauth2/v2/auth", params={
-#                 "code": input_data.code,       
-#                 "client_id": os.environ.get(setting.GOOGLE_CLIENT_ID),
-#                 "client_secret": os.environ.get(setting.GOOGLE_CLIENT_SECRET),
-#                 "redirect_uri": os.environ.get(setting.GOOGLE_REDIRECT_URI),
-#                 "grant_type": os.environ.get(setting.GOOGLE_GRANT_TYPE),
-#             },headers=headers
-#         )
-#         token_data = response.json()
-#         # Get user info with the token
-#         user_info = requests.get("https://www.googleapis.com/oauth2/v3/userinfo", headers={
-#             "Authorization": f"Bearer {token_data['access_token']}"
-#         })
-#         user_info_data = user_info.json()
-#         email = user_info_data['email']
-#         dbUser = AuthCRUD.getUserByEmailID(db, email)
-#         if not dbUser:
-#             logging.info("No user exists in the database with this email")
-#             return error_response(get_message("auth_login", "no_social_account"), 401)
-#         data = {
-#             "ID": dbUser.ID,
-#             "email":dbUser.email 
-#         }
-#         jwt_token = createJWTToken(data)
-#         login_data = jsonable_encoder(dbUser._mapping)
-#         login_data["password_updated"] = True
-#         return {
-#                 "user": login_data,
-#                 "access_token": jwt_token,
-#                 "token_type": "bearer",
-#                 "social_login": True
-#             }
-#     except ArithmeticError as e:
-#         logging.error(f"Internal server error: {e.args}")
-#         return error_response(get_message("internal_server", "internal"), 500)
+# ----------------------- Google Login -----------------------
 
-
-@router.get("/auth/google")
-async def auth_google(code: str):
-    token_url = "https://accounts.google.com/o/oauth2/token"
-    # token_url = "https://oauth2.googleapis.com/token"
-    data = {
-        "code": code,
-        "client_id":  setting.GOOGLE_CLIENT_ID,
-        "client_secret": setting.GOOGLE_CLIENT_SECRET,
-        "redirect_uri": setting.GOOGLE_REDIRECT_URI,
-        "grant_type": "authorization_code",
+@router.get("/login/google")
+async def login_google():
+    return {
+        "url": f"https://accounts.google.com/o/oauth2/auth?response_type=code&client_id={setting.GOOGLE_CLIENT_ID}&redirect_uri={setting.GOOGLE_REDIRECT_URI}&scope=openid%20profile%20email&access_type=offline"
     }
-    print(data,"*+++*+++*+++*+++*")
-    response = requests.post(token_url, data=data)
+
+
+@router.get("/api/code", response_model=pydanticSchemas.LoginResponse)
+async def auth_google(code: str, db: Session = Depends(get_db)):
+    try:
+        decoded_code = unquote(code)
+        
+        token_url = "https://accounts.google.com/o/oauth2/token"
+        data = {
+            "code": decoded_code,
+            "client_id": setting.GOOGLE_CLIENT_ID,
+            "client_secret": setting.GOOGLE_CLIENT_SECRET,
+            "redirect_uri": setting.GOOGLE_REDIRECT_URI,
+            "grant_type": "authorization_code",
+        }
+        response = requests.post(token_url, data=data)
+
+        access_token = response.json().get("access_token")
+        user_info = requests.get("https://www.googleapis.com/oauth2/v1/userinfo", headers={"Authorization": f"Bearer {access_token}"})
+
+        user_info_data = user_info.json()
+        email = user_info_data['email']
+
+        dbUser = AuthCRUD.getUserByEmailID(db, email)
+        if not dbUser:
+            logging.info("No user exists in the database with this email")
+            return error_response(get_message("auth_login", "no_social_account"), 401)
+        data = {
+                "ID": str(dbUser.id),
+                "email": dbUser.username,
+                "scope": dbUser.role
+            }
+        
+        jwt_token = createJWTToken(data)
+
+        login_data = jsonable_encoder(dbUser)
+
+        login_data['email'] = email 
+        
+        return {
+                "user": login_data,
+                "access_token": jwt_token,
+                "token_type": "bearer"
+            }
     
-    access_token = response.json().get("access_token")
-    breakpoint()
-    user_info = requests.get("https://www.googleapis.com/oauth2/v1/userinfo", headers={"Authorization": f"Bearer {access_token}"})
-    return user_info.json()
+    except ArithmeticError as e:
+        logging.error(f"Internal server error: {e.args}")
+        return error_response(get_message("intern al_server", "internal"), 500)
 
 @router.get("/token")
 async def get_token(token: str = Depends(oauth2_scheme)):
     return jwt.decode(token, setting.GOOGLE_CLIENT_SECRET, algorithms=["HS256"])
-

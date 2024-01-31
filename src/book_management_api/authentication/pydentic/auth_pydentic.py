@@ -19,13 +19,3 @@ class LoginResponse(BaseModel):
     class Config:
         from_attributes = True
         str_strip_whitespace = True
-
-
-class GoogleSocialLoginRequest(BaseModel):
-    code: str
-    device_token : Optional[str]
-
-    class Config:
-        from_attributes = True
-        str_strip_whitespace = True
-
