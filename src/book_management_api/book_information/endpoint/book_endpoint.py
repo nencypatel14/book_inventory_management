@@ -34,7 +34,7 @@ def add_book_details(input_data: BookDetail, db: Session = Depends(get_db), user
     Add Book Details in the database with provided input data.
     """
     try:
-        if(user["scopes"][0] != ADMIN or user["scopes"][0] != USER):
+        if(user["scopes"][0] not in [ADMIN, USER]):
             return error_response("You are not Allowed to add book Information")
 
         add_book = CRUDbook.create_book_information(db, input_data)
@@ -124,8 +124,8 @@ def search_book(author_name: str, db: Session = Depends(get_db)):
     Search book with using author name 
     """
     try:
-        first_name, last_name = author_name.split()
-        author = CRUDbook.get_author_by_name(db, first_name, last_name)
+        # Modify to use a single author_name parameter
+        author = CRUDbook.get_author_by_name(db, author_name)
 
         if author is None:
             return error_response("This author information does not exist in the database.")
@@ -135,11 +135,10 @@ def search_book(author_name: str, db: Session = Depends(get_db)):
         book_data = []
         for book in books:
             book_dict = jsonable_encoder(book)
-            book_dict['author_id'] = author_name
+            book_dict['author_id'] = author.id  # Use author.id instead of author_name
             book_data.append(book_dict)
 
         return success_response(book_data, "Fetch list of books successfully")
-     
-    except ArithmeticError as e:
-        logging.error(f"Internal server error: {e.args}")
-        return error_response(get_message("internal_server", "internal"), 500)
+    except ValueError:
+        return error_response("Invalid author name format. Please provide both first name and last name.")
+

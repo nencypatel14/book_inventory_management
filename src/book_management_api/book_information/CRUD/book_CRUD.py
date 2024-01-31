@@ -1,7 +1,8 @@
 import random
 from uuid import uuid4
-from sqlalchemy import func
 from sqlalchemy.orm import Session
+from sqlalchemy import func
+
 
 from src.model import book_management_model as Table
 from src.book_management_api.book_information.pydantic.book_pydantic import BookDetail, UpdateBookDetail, BookRate, UpdateBookReview
@@ -133,12 +134,11 @@ def get_book_by_user(db: Session, author_ID: str):
     return data
 
 
-def get_author_by_name(db: Session, first_name: str, last_name: str):
+def get_author_by_name(db: Session, search: str):
     author_by_name = db.query(
         Table.AuthorDetail
     ).filter(
-        Table.AuthorDetail.first_name.ilike(f'%{first_name}%'),
-        Table.AuthorDetail.last_name.ilike(f'%{last_name}%')
+        func.concat(Table.AuthorDetail.first_name, ' ', Table.AuthorDetail.last_name).ilike(f'%{search}%')
     ).first()
 
     return author_by_name

@@ -21,9 +21,9 @@ class UserDetailResponse(BaseModel):
 
 
 class UpdateUserInformation(BaseModel):
-    username: Optional[str]
-    password: Optional[str]
-    role: Optional[str]
+    username: Optional[str] = None
+    password: Optional[str] = None
+    role: Optional[str] = None
 
     class Config:
         from_attributes = True

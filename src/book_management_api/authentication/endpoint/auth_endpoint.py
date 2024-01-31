@@ -84,7 +84,6 @@ async def login_google():
         "url": f"https://accounts.google.com/o/oauth2/auth?response_type=code&client_id={setting.GOOGLE_CLIENT_ID}&redirect_uri={setting.GOOGLE_REDIRECT_URI}&scope=openid%20profile%20email&access_type=offline"
     }
 
-
 @router.get("/api/code", response_model=pydanticSchemas.LoginResponse)
 async def auth_google(code: str, db: Session = Depends(get_db)):
     try:
