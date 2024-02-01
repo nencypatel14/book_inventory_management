@@ -71,11 +71,14 @@ def delete_book_data(book_id: str, db: Session = Depends(get_db), user: dict = S
     
 
 @router.put("/update-book/{book_id}")
-def update_book_detail(book_id: str, updateBook: UpdateBookDetail, db: Session = Depends(get_db)):
+def update_book_detail(book_id: str, updateBook: UpdateBookDetail, db: Session = Depends(get_db), user: dict = Security(verifyToken, scopes=[ADMIN])):
     """
     Update book Details in the database
     """
     try:
+        if (user["scopes"][0] != ADMIN):
+            return error_response("You are not allowed to Update book information.")
+
         existing_book_data = CRUDbook.get_book_details_by_id(db, book_id)
 
         if existing_book_data is None:
@@ -104,7 +107,7 @@ def add_book_rating(book_id: str, rating: RatingEnum, review: str, book_data = D
             return error_response("This book information is not exist in Database.")
         
         existing_rating = CRUDbook.get_rating_by_user_and_book(db, user["ID"], book_id)
-
+        
         if existing_rating:
             updated_rate = CRUDbook.update_rating(db, book_data, book_id, user["ID"])
             return success_response(updated_rate, "Rating Updated Successfully")
@@ -113,32 +116,35 @@ def add_book_rating(book_id: str, rating: RatingEnum, review: str, book_data = D
             add_rating = CRUDbook.add_rating_of_book(db,book_data,user["ID"], book_id, review)
             return success_response(add_rating, "Rating Added Successfully")
     
-    except ArithmeticError as e:
+    except Exception as e:
         logging.error(f"Internal server error: {e.args}")
         return error_response(get_message("internal_server", "internal"), 500)
 
 
 @router.post("/search-book")
-def search_book(author_name: str, db: Session = Depends(get_db)):
+def search_book(author_name: str, db: Session = Depends(get_db), user: dict = Security(verifyToken, scopes=[ADMIN, USER])):
     """
     Search book with using author name 
     """
     try:
-        # Modify to use a single author_name parameter
+        if(user["scopes"][0] not in [ADMIN, USER]):
+            return error_response("You are not Allowed to Search book Information")
+        
         author = CRUDbook.get_author_by_name(db, author_name)
 
         if author is None:
             return error_response("This author information does not exist in the database.")
 
         books = CRUDbook.get_books_by_author_id(db, author.id)
-
+    
         book_data = []
         for book in books:
             book_dict = jsonable_encoder(book)
-            book_dict['author_id'] = author.id  # Use author.id instead of author_name
+            book_dict['author_id'] = f"{author.first_name} {author.last_name}" 
             book_data.append(book_dict)
 
         return success_response(book_data, "Fetch list of books successfully")
-    except ValueError:
-        return error_response("Invalid author name format. Please provide both first name and last name.")
-
+    
+    except Exception as e:
+        logging.error(f"Internal server error: {e.args}")
+        return error_response(get_message("internal_server", "internal"), 500)

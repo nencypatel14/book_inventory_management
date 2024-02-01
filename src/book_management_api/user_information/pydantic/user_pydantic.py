@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
+
 class UserDetails(BaseModel):
     username: str
     password: str
@@ -10,7 +11,6 @@ class UserDetails(BaseModel):
         from_attributes = True
         str_strip_whitespace = True
 
-
 class UserDetailResponse(BaseModel):
     username: str
     role: str
@@ -18,7 +18,6 @@ class UserDetailResponse(BaseModel):
     class Config:
         from_attributes = True
         str_strip_whitespace = True
-
 
 class UpdateUserInformation(BaseModel):
     username: Optional[str] = None

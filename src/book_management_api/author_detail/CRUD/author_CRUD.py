@@ -4,6 +4,8 @@ from sqlalchemy.orm import Session
 from src.model import book_management_model as Table
 from src.book_management_api.author_detail.pydentic.author_pydentic import AuthorDetail
 
+
+# Create author in databse
 def Create_author_detail(db: Session, author: AuthorDetail):
     author_data = Table.AuthorDetail(
         id = uuid4(),
@@ -16,7 +18,8 @@ def Create_author_detail(db: Session, author: AuthorDetail):
     db.refresh(author_data)
     return author_data
 
-def get_user_by_email(db:Session, email: str):
+# Get Authro By Provided Email
+def get_author_by_email(db:Session, email: str):
     data = db.query(
         Table.AuthorDetail
     ).filter(

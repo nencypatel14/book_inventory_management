@@ -1,6 +1,4 @@
-from typing import Optional
 from pydantic import BaseModel
-# from src.book_management_api.user_information.pydantic.user_pydantic import UserDetails
 
 
 class UserResponse(BaseModel):

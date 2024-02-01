@@ -3,14 +3,14 @@ from uuid import uuid4
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
-
 from src.model import book_management_model as Table
 from src.book_management_api.book_information.pydantic.book_pydantic import BookDetail, UpdateBookDetail, BookRate, UpdateBookReview
 
-
+# Get List of all Book
 def get_book_information(db: Session):
     return db.query(Table.BookInformation).all()
 
+# Generate Rendom ISBN number
 def generate_isbn():
 
     isbn12 = [random.randint(0, 9) for _ in range(12)]
@@ -19,6 +19,7 @@ def generate_isbn():
 
     return ''.join(map(str, isbn13))
 
+# Create Book Information in database
 def create_book_information(db: Session, book: BookDetail):
     book_data = Table.BookInformation(
         id = uuid4(),
@@ -35,7 +36,7 @@ def create_book_information(db: Session, book: BookDetail):
     db.refresh(book_data)
     return book_data
 
-
+# Delete User From Database
 def delete_user_information(db: Session, book_ID: str):
     deleted_book= db.query(
         Table.BookInformation
@@ -46,7 +47,7 @@ def delete_user_information(db: Session, book_ID: str):
     db.commit()
     return deleted_book
 
-
+# Get Book Information From Database by Provided  book_id
 def get_book_details_by_id(db:Session, book_id: str):
     data = db.query(
         Table.BookInformation
@@ -56,7 +57,7 @@ def get_book_details_by_id(db:Session, book_id: str):
     
     return data
 
-
+# Update book Details in the database
 def update_book_data(db: Session, update_book: UpdateBookDetail, book_id: str):
     current_book_detail = db.query(
         Table.BookInformation
@@ -79,7 +80,7 @@ def update_book_data(db: Session, update_book: UpdateBookDetail, book_id: str):
     db.refresh(current_book_detail)
     return current_book_detail
 
-
+# Give Rating for Book 
 def add_rating_of_book(db:  Session, rate: BookRate, id: str, bookId: str, book_review: str):
     book_data = Table.BookReviews(
         id = uuid4(),
@@ -94,7 +95,7 @@ def add_rating_of_book(db:  Session, rate: BookRate, id: str, bookId: str, book_
     db.refresh(book_data)
     return book_data
 
-
+# Update Rating in Database
 def update_rating(db: Session, update_rate: UpdateBookReview, book_ID: str, user_ID: str):
     current_book_rating = db.query(
         Table.BookReviews
@@ -114,6 +115,7 @@ def update_rating(db: Session, update_rate: UpdateBookReview, book_ID: str, user
     db.refresh(current_book_rating)
     return current_book_rating
 
+# Get Rating by book_id and use
 def get_rating_by_user_and_book(db: Session, user_ID: str, book_ID: str):
     data = db.query(
         Table.BookReviews
@@ -124,16 +126,7 @@ def get_rating_by_user_and_book(db: Session, user_ID: str, book_ID: str):
     
     return data
 
-def get_book_by_user(db: Session, author_ID: str):
-    data = db.query(
-        Table.BookInformation
-    ).filter(
-        Table.BookInformation.author_id == author_ID
-    ).first()
-    
-    return data
-
-
+# Search Book Information by Author Name
 def get_author_by_name(db: Session, search: str):
     author_by_name = db.query(
         Table.AuthorDetail
@@ -143,7 +136,7 @@ def get_author_by_name(db: Session, search: str):
 
     return author_by_name
 
-
+# Get Book Information By Author Id
 def get_books_by_author_id(db: Session, author_id: int):
     book_by_id = db.query(
         Table.BookInformation

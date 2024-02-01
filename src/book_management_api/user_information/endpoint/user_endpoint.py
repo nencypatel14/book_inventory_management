@@ -1,16 +1,15 @@
 import logging
 from fastapi import APIRouter, Depends, Security
 from fastapi.encoders import jsonable_encoder
+
 from database.db import Session, get_db
 from src.general.constant import ADMIN
 from src.general.dependencies import verifyToken
-
 from src.book_management_api.user_information.pydantic.user_pydantic import UserDetails, UpdateUserInformation
 from src.general.response import error_response, get_message, success_response
 from src.book_management_api.user_information.CRUD import user_CRUD as CRUDuser
 
 router = APIRouter()
-
 
 @router.post("/signup")
 def create_account(user_info: UserDetails, db: Session = Depends(get_db)):
@@ -31,7 +30,6 @@ def create_account(user_info: UserDetails, db: Session = Depends(get_db)):
         logging.error(f"Internal server error: {e.args}")
         return error_response(get_message("internal_server", "internal"), 500)
 
-
 @router.get("/list")
 def get_user_information_list(db: Session = Depends(get_db), user: dict = Security(verifyToken, scopes=[ADMIN])):
     """
@@ -46,7 +44,6 @@ def get_user_information_list(db: Session = Depends(get_db), user: dict = Securi
     except Exception as e:
         logging.error(f"Internal server error: {e.args}")
         return error_response(get_message("internal_server", "internal"), 500)
-
 
 @router.delete("/delete-user/{user_id}")
 def delete_user(user_id:str, db: Session = Depends(get_db), user: dict = Security(verifyToken, scopes=[ADMIN])):
@@ -66,14 +63,13 @@ def delete_user(user_id:str, db: Session = Depends(get_db), user: dict = Securit
 
         if deleteUser <= 0:
             return {"message: No User found"}
-        return success_response(None, "The requested book has been deleted Successfully")
+        return success_response(None, "The requested User has been deleted Successfully")
     
     except Exception as e:
         logging.error(f"Internal server error: {e.args}")
         return error_response(get_message("internal_server", "internal"), 500)
     
-
-@router.put("/update/{user_id}")
+@router.put("/update/{input_user_id}")
 def update_user_information(input_user_id: str, updateUsers: UpdateUserInformation, db: Session = Depends(get_db),  user: dict = Security(verifyToken, scopes=[ADMIN])):
     """
     Update user Information in the database by provided details .
@@ -92,3 +88,4 @@ def update_user_information(input_user_id: str, updateUsers: UpdateUserInformati
     except Exception as e:
         logging.error(f"Internal server error: {e.args}")
         return error_response(get_message("internal_server", "internal"), 500)
+    

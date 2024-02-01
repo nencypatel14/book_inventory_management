@@ -8,7 +8,7 @@ import os, sys
 from config.config import setting
 
 from database.db import Base
-from database import base_mode
+from database import base_model
 
 SQLALCHEMY_DATABASE_URL = f"postgresql+psycopg2://{setting.POSTGRES_USER}:{setting.POSTGRES_PASSWORD}@{setting.POSTGRES_HOSTNAME}:{setting.POSTGRES_PORT}/{setting.POSTGRES_DB}"
 

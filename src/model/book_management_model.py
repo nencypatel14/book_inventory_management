@@ -2,7 +2,6 @@ from sqlalchemy import Column, Float, ForeignKey, String, DateTime
 import uuid
 from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
-
 from database.db import Base
 
 class UserInformation(Base):

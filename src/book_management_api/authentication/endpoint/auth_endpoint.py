@@ -1,16 +1,13 @@
 import logging
-import os
 from urllib.parse import unquote
 import bcrypt
-from jose import jwt
 import requests
-
 from fastapi import APIRouter, Depends
 from fastapi.encoders import jsonable_encoder
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+
 from database.db import Session, get_db
 from src.general.JWTFunctions import createJWTToken
-
 from src.general.constant import USER, ADMIN
 from src.general.response import error_response, get_message
 from src.book_management_api.authentication.pydentic import auth_pydentic as pydanticSchemas
@@ -71,7 +68,7 @@ def login(db: Session = Depends(get_db), user: OAuth2PasswordRequestForm = Depen
                 "token_type": "bearer"
             }
     
-    except ArithmeticError as e:
+    except Exception as e:
         logging.error(f"Internal server error: {e.args}")   
         return error_response(get_message("internal_server", "internal"), 500)
 
@@ -127,10 +124,6 @@ async def auth_google(code: str, db: Session = Depends(get_db)):
                 "token_type": "bearer"
             }
     
-    except ArithmeticError as e:
+    except Exception as e:
         logging.error(f"Internal server error: {e.args}")
         return error_response(get_message("intern al_server", "internal"), 500)
-
-@router.get("/token")
-async def get_token(token: str = Depends(oauth2_scheme)):
-    return jwt.decode(token, setting.GOOGLE_CLIENT_SECRET, algorithms=["HS256"])

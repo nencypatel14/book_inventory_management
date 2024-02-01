@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from src.model import book_management_model as Table
 from src.book_management_api.user_information.pydantic.user_pydantic import UpdateUserInformation, UserDetails
 
-
+# Create User in Database
 def user_signup(db: Session, user: UserDetails):
     hashedPassword = bcrypt.hashpw(
         user.password.strip().encode("utf-8"), bcrypt.gensalt(rounds=12)
@@ -22,11 +22,11 @@ def user_signup(db: Session, user: UserDetails):
     db.refresh(user_info)
     return user_info
 
-
+# Give List of User Data
 def get_information(db: Session):
     return db.query(Table.UserInformation).all()
 
-
+# Get User Detail By Prvided user_id
 def get_user_details_by_id(db:Session, user_id: str):
     data = db.query(
         Table.UserInformation
@@ -36,7 +36,7 @@ def get_user_details_by_id(db:Session, user_id: str):
     
     return data
 
-
+# Delete User Detail From Database
 def delete_user_information(db: Session, user_ID: str):
     deleted_user= db.query(
         Table.UserInformation
@@ -47,7 +47,7 @@ def delete_user_information(db: Session, user_ID: str):
     db.commit()
     return deleted_user
 
-
+# Update User Detail in Database
 def update_user(db: Session, user_id: str, updateUser: UpdateUserInformation):
     current_user = db.query(
         Table.UserInformation
@@ -63,7 +63,7 @@ def update_user(db: Session, user_id: str, updateUser: UpdateUserInformation):
     db.refresh(current_user)
     return current_user
 
-
+# Get User Detail From Database Using Username
 def get_user_by_username(db:Session, username: str):
     data = db.query(
         Table.UserInformation

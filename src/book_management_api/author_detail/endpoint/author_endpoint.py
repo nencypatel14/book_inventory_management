@@ -14,10 +14,10 @@ def add_author_detail(input_data: AuthorDetail, db: Session = Depends(get_db)):
     Add author Information in the database with provied Data.
     """
     try:
-        existing_author = CRUDauthor.get_user_by_email(db, input_data.email_id)
+        existing_author = CRUDauthor.get_author_by_email(db, input_data.email_id)
 
         if existing_author:
-            return error_response("This Email ID already exists")
+            return error_response("This Author Detail already exists in Database")
 
         add_author = CRUDauthor.Create_author_detail(db, input_data)
         return success_response(add_author, "Author Created Successfully.")
