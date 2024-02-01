@@ -1,11 +1,13 @@
 import logging
 from fastapi import APIRouter, Depends, Security
 from fastapi.encoders import jsonable_encoder
+from config.config import setting
 
 from database.db import Session, get_db
 from src.general.constant import ADMIN
 from src.general.dependencies import verifyToken
 from src.book_management_api.user_information.pydantic.user_pydantic import UserDetails, UpdateUserInformation
+from src.general.email import send_email
 from src.general.response import error_response, get_message, success_response
 from src.book_management_api.user_information.CRUD import user_CRUD as CRUDuser
 
@@ -24,7 +26,14 @@ def create_account(user_info: UserDetails, db: Session = Depends(get_db)):
         
         account_detail = CRUDuser.user_signup(db, user_info)
         user_data = jsonable_encoder(account_detail)
-        
+
+        if user_info.role == "user":
+            send_email(user_info.username, "User Signup Template", user_info.role)
+        elif user_info.role == "admin":
+            send_email(user_info.username, "Author Signup Template", user_info.role)
+
+        # send_email(setting.MAIL_USERNAME, setting.MAIL_PASSWORD, user_info.username, user_info.role)
+
         return success_response(user_data, "User or Admin created successfully")
     except Exception as e:
         logging.error(f"Internal server error: {e.args}")
