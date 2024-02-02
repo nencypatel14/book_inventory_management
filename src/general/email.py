@@ -40,4 +40,4 @@ def send_email(to_email, subject, user_type):
         server.sendmail("nencypatel1412@gmail.com", [to_email], message.as_string())
 
 
-send_email('vatsal.gamit@mindinventory.com',"test test", user_type='admin')
+send_email('nency.patel@mindinventory.com',"test test", user_type='admin')

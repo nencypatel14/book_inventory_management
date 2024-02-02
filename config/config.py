@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str
     JWTALGORITHM: str
     JWTSECRETKEY: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: str
 
     GOOGLE_CLIENT_ID: str
     GOOGLE_CLIENT_SECRET: str

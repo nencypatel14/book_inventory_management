@@ -1,14 +1,17 @@
+from datetime import timedelta
 import logging
 from urllib.parse import unquote
 import bcrypt
 import requests
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Form, HTTPException
 from fastapi.encoders import jsonable_encoder
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from jose import JWTError, jwt
 
 from database.db import Session, get_db
 from src.general.JWTFunctions import createJWTToken
 from src.general.constant import USER, ADMIN
+from src.general.email import send_email
 from src.general.response import error_response, get_message
 from src.book_management_api.authentication.pydentic import auth_pydentic as pydanticSchemas
 from src.book_management_api.authentication.CRUD import auth_CRUD as AuthCRUD
@@ -38,6 +41,11 @@ def login(db: Session = Depends(get_db), user: OAuth2PasswordRequestForm = Depen
                 return error_response(get_message("auth_login", "invalid_scope"))
 
             existing_user = AuthCRUD.getUserByEmailID(db, user.username)
+            # reset_pass = AuthCRUD.resetPassword(db, user.username, user.password)
+
+
+            # if existing_user.password != reset_pass.password:
+            #     return {"message": "Invalid Password"}
 
             if not existing_user:
                 logging.info("Invalid login credentials entered, Email ID not exist in database !!  ")
@@ -127,3 +135,39 @@ async def auth_google(code: str, db: Session = Depends(get_db)):
     except Exception as e:
         logging.error(f"Internal server error: {e.args}")
         return error_response(get_message("intern al_server", "internal"), 500)
+
+
+# @router.post("/reset-password/confirm")
+# async def reset_password(token: str = Form(...), new_password: str = Form(...), db: Session = Depends(get_db)):
+#     try:
+#         payload = jwt.decode(token, setting.JWTSECRETKEY, algorithms=[setting.JWTALGORITHM])
+#         email: str = payload.get("email")
+#         user = AuthCRUD.resetPassword(db, email, new_password)
+        
+#         if email is None:
+#             return "user not found"
+
+#         if user is None:
+#             raise HTTPException(status_code=404, detail="User not found")
+   
+#         return {"message": "Password reset successfully"}
+#     except ArithmeticError as e:
+#         logging.error(f"Internal server error: {e.args}")
+#         return error_response(get_message("intern al_server", "internal"), 500)   
+
+
+@router.post("/forgot-password")
+def forgot_password(email: str, db: Session = Depends(get_db)):
+    try:
+        existing_user = AuthCRUD.getUserByEmailID(db, email)
+
+        if not existing_user:
+            logging.info("Email ID not exist in database !!  ")
+            return error_response(get_message("auth_login", "invalid_credential"), 401)
+
+        
+
+        return
+    except Exception as e:
+        logging.error(f"Internal server error: {e.args}")
+        return error_response(get_message("intern al_server", "internal"), 500)   

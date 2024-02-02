@@ -3,6 +3,7 @@ import uuid
 from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
 from database.db import Base
+from sqlalchemy.orm import relationship
 
 class UserInformation(Base):
     __tablename__ = "user_information"
@@ -14,6 +15,8 @@ class UserInformation(Base):
 
     created_at = Column(DateTime, default=datetime.utcnow())
     modified_at = Column(DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
+
+    tokens = relationship("UserToken", back_populates="user")
 
 
 class BookInformation(Base):
@@ -54,3 +57,15 @@ class AuthorDetail(Base):
 
     created_at = Column(DateTime, default=datetime.utcnow())
     modified_at = Column(DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
+
+class UserToken(Base):
+    __tablename__ = "user_tokens"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True)
+    user_id = Column(UUID, ForeignKey('user_information.id'))
+    access_key = Column(String(250), nullable=True, default=None)
+    refresh_key = Column(String(250), nullable=True, default=None)
+    created_at = Column(DateTime, default=datetime.utcnow())
+    expires_at = Column(DateTime, nullable=False)
+    
+    user = relationship("UserInformation", back_populates="tokens")
