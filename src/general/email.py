@@ -5,9 +5,9 @@ from jinja2 import Template
 
 
 def create_template(user_type):
-    file_name = 'user_template.html'
+    file_name = 'user_main.html'
     if user_type == 'admin':
-         file_name = 'admin_template.html'  
+         file_name = 'admin_main.html'  
     with open(f"templates/{file_name}", "r") as file:
             template_str = file.read()
         
